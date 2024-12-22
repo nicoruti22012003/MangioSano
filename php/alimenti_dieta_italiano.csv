@@ -1,0 +1,206 @@
+Mela;52;14;0.3;0.2
+Banana;89;23;1.1;0.3
+Patata;77;17;2.0;0.1
+Zucchine;16;3.1;1.2;0.3
+Broccoli;34;6.6;2.8;0.4
+Carota;41;9.6;0.9;0.2
+Pomodoro;18;3.9;0.9;0.2
+Lattuga;15;2.9;1.4;0.2
+Cavolfiore;25;5;1.9;0.3
+Spinaci;23;3.6;2.9;0.4
+Pollo (petto);165;0;31;3.6
+Tacchino;135;0;29;1.7
+Manzo (magro);250;0;26;15
+Maiale (magro);242;0;27;14
+Pesce Spada;144;0;24;4.3
+Salmone;208;0;20;13
+Tonno;132;0;28;1
+Merluzzo;82;0;18;0.7
+Uovo;155;1.1;13;11
+Latte (intero);61;4.7;3.2;3.3
+Formaggio (mozzarella);280;2.2;18;22
+Yogurt (intero);61;4.7;3.5;3.3
+Riso;130;28;2.7;0.3
+Pasta;131;25;5.1;1.1
+Pane Integrale;247;41;8.5;4.2
+Avena;389;66;17;7
+Orzo;354;73;12.5;2.3
+Farro;340;67;15;2.5
+Quinoa;120;21;4.4;1.9
+Soia;446;30;36;20
+Mandorle;579;22;21;49
+Noci;654;14;15;65
+Nocciole;628;17;15;61
+Semi di Lino;534;29;18;42
+Semi di Chia;486;42;17;31
+Semi di Girasole;584;20;21;51
+Fagioli;347;61;21;1.2
+Lenticchie;116;20;9;0.4
+Ceci;364;61;19;6
+Piselli;81;14;5;0.4
+Fragole;32;7.7;0.7;0.3
+Mirtilli;57;14;0.7;0.3
+Lamponi;52;12;1.2;0.7
+Arancia;47;12;0.9;0.1
+Limone;29;9;1.1;0.3
+Mandarino;53;13;0.8;0.3
+Ananas;50;13;0.5;0.1
+Cocco;354;15;3.3;33
+Melone;34;8.2;0.8;0.2
+Anguria;30;8;0.6;0.2
+Fichi;74;19;0.8;0.3
+Pere;57;15;0.4;0.1
+Pesche;39;9.5;0.9;0.3
+Prugne;46;11;0.7;0.3
+Ciliegie;50;12;1;0.3
+Uva;69;18;0.7;0.2
+Fagiolini;31;7;1.8;0.2
+Bietole;19;3.7;1.8;0.2
+Zucca;26;6.5;1;0.1
+Finocchio;31;7.3;1.2;0.2
+Peperoni;31;6;1;0.3
+Melanzane;25;5.9;1;0.2
+Cetriolo;15;3.6;0.7;0.1
+Cavolo;25;5.6;1.9;0.1
+Asparagi;20;3.9;2.2;0.1
+Sedano;16;3;0.7;0.2
+Rucola;25;3.7;2.6;0.7
+Scalogno;72;17;2.5;0.1
+Pasta integrale (cruda);340;65;12.5;2.5
+Riso integrale (crudo);370;77;8;2.9
+Farina di grano;364;76;10;1
+Aglio;149;33;6.4;0.5
+Cipolla;40;9;1.1;0.1
+Zenzero fresco;80;18;1.8;0.8
+Pepe nero;251;64;10.4;3.3
+Sale;0;0;0;0
+Cannella;247;81;4;1.2
+Curcuma;312;67;9.7;3.3
+Basilico fresco;23;3.6;3.2;0.6
+Origano secco;265;69;9;4.3
+Prezzemolo;36;6;3;0.8
+Semi di sesamo;573;23;18;50
+Farina d’avena;389;66;17;7
+Funghi (champignon);22;3.3;3.1;0.3
+Latte di soia;33;4.7;3.3;1.6
+Tofu;76;1.9;8;4.8
+Tempeh;193;9.4;19;10.8
+Germogli di soia;49;9.6;5.4;0.2
+Olive nere;115;6;0.8;10.7
+Olive verdi;146;3.8;1;15.3
+Cavolo riccio;35;4.4;4.3;0.6
+Lattuga romana;17;3;1.2;0.3
+Ceci secchi;364;61;19.3;6
+Fagioli neri secchi;341;63;21.6;1.4
+Lenticchie secche;353;60;25;1.1
+Semi di girasole;584;20;21;51
+Mandorle (senza buccia);575;21;21;49
+Noci del Brasile;656;12;14;66
+Fichi secchi;249;64;3.3;0.9
+Uvetta;299;79;3.1;0.5
+Datteri;282;75;2.5;0.4
+Prugne secche;240;64;2.2;0.4
+Cioccolato fondente 70%;598;45;7.8;42
+Zucchero;387;100;0;0
+Miele;304;82.4;0.3;0
+Sciroppo d’acero;260;67;0;0.1
+Burro di arachidi;588;20;25;50
+Avocado;160;8.5;2;14.7
+Prosciutto crudo;145;1.3;25;5.6
+Bresaola;151;0.6;32;2.6
+Salame;407;1.5;22;35
+Petto di tacchino;135;0;29;1.7
+Branzino;97;0;18;2.5
+Cozze;86;3.7;11.9;2.2
+Seppia;79;1.6;16.5;0.7
+Uovo sodo;155;1.1;13;11
+Uovo di quaglia;158;0.4;13;11.1
+Yogurt greco;97;3.6;9.0;5
+Latte scremato;35;5;3.6;0.1
+Polpa di pomodoro;18;4;0.8;0.1
+Fave;88;19;7;0.7
+Arachidi tostate;585;21;24.3;49.7
+Burro;717;0.1;0.9;81.1
+Olio d’oliva;884;0;0;100
+Olio di cocco;862;0;0;100
+Olio di girasole;884;0;0;100
+Aceto di mele;21;0.9;0;0
+Albicocca fresca;48;11;1.4;0.4
+Anguria gialla;30;8;0.6;0.2
+Amarene;50;12;1;0.3
+Pesca noce (nettarina);44;10;1.1;0.3
+Kiwi;61;15;1.1;0.5
+Pompelmo;42;11;0.8;0.1
+Mango;60;15;0.8;0.4
+Papaya;43;11;0.5;0.1
+Cachi;81;21;0.6;0.4
+Radicchio;23;4;1.5;0.2
+Crescione;32;4.4;2.6;0.7
+Sedano rapa;42;9.2;1.5;0.3
+Porro;61;14;1.5;0.3
+Topinambur;73;17;2;0.1
+Finocchi;31;7.3;1.2;0.2
+Zucca gialla;26;6.5;1;0.1
+Barbabietola;43;10;1.6;0.2
+Verza;27;6;1.4;0.1
+Fagioli borlotti (cotti);140;26;9;0.5
+Ceci in scatola;118;20;7;2.5
+Lupini;119;9.6;15.6;2.4
+Burro di mandorle;614;20;21.2;54.7
+Pane di segale;259;48;8.5;3.3
+Piadina integrale;308;48;8;8.9
+Cracker integrali;392;66;10.2;8.8
+Pane ai cereali;265;48;9.1;4
+Tortilla di mais;218;44;5;3
+Polenta;70;15;1.6;0.2
+Couscous crudo;376;77;12.8;0.6
+Orzo perlato;352;74;9.9;1.2
+Bulgur;342;76;12.3;1.3
+Latte di mandorla;17;1.3;0.4;1.2
+Latte di cocco;230;5.5;2.3;24
+Yogurt di soia;45;4;4.2;2.3
+Yogurt di cocco;154;13;1.5;11
+Ricotta di pecora;174;4.1;11;13.7
+Formaggio feta;264;4;14.2;21.3
+Provola;351;1.3;25.5;27
+Parmigiano;431;3;38;29
+Bietole;19;3.7;1.8;0.2
+Carciofi;47;10;3.3;0.2
+Cavolo di Bruxelles;43;9;3.4;0.3
+Lenticchie in scatola;84;14;6;0.3
+Kiwi Gold;60;14.5;1.2;0.5
+Mandarino cinese;71;15;1.8;0.2
+Melograno;83;19;1.7;1.2
+Passata di pomodoro;29;5;1.2;0.2
+Fave fresche;88;19;7;0.7
+Broccoli a vapore;35;7.2;2.4;0.4
+Pomodori secchi;258;55;14;2.8
+Piselli surgelati;68;12;5;0.4
+Peperoncino fresco;40;9;1.9;0.4
+Erba cipollina;30;5;3.2;0.7
+Semi di papavero;525;28;18;42
+Bacche di goji;349;77;14;1.5
+Avocado Hass;160;9;2;15
+Frutti di bosco misti;57;14;1.2;0.3
+Prugne fresche;46;11;0.7;0.3
+Grano saraceno;343;71;13.3;3.4
+Olio di semi di lino;884;0;0;100
+Prosciutto cotto;147;1.3;21;5.3
+Ricotta vaccina;174;3;11;13
+Bresaola;151;0.6;32;2.6
+Mortadella;311;0;15.2;28.2
+Spada affumicato;153;0;27.2;4.5
+Seitan;370;14.4;75;1.5
+Latte condensato;321;54;7.9;8.7
+Zucchine grigliate;18;3.1;1.2;0.3
+Insalata belga;17;2.9;1.2;0.2
+Cavolo cappuccio;24;5.6;1.4;0.1
+Castagne;213;45;2;2.2
+Semi di canapa;553;8;31;48
+Lattuga iceberg;14;3.1;0.9;0.1
+Rape;28;6;0.9;0.1
+Asparagi;20;3.9;2.2;0.2
+Patate dolci;86;20;1.6;0.1
+Ravanelli;16;3.4;0.7;0.1
+Cetrioli;16;3.6;0.7;0.1
+Fiori di zucca;12;2.5;1.2;0.1
