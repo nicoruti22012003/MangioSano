@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style3.css">
+        <link rel="icon" type="image/vnd.icon" href="img/logo_webapp_MangioSano.png">
+    </head>
+  
+    <body>
+        <div class="sfondo2"></div>
+
+        <div class="titolo">
+            Aggiorna Peso
+        </div>
+        <div class="container_button">
+            <div class="button_round_minus" id="minus_button">
+                -
+            </div> 
+            <div class="button_round_plus" id="plus_button">
+                +
+            </div>
+            <div class="button" id="save_button">
+                SALVA MODIFICHE
+            </div>
+            <div class="peso" id="peso_value">
+                <!-- Qui verrà visualizzato il valore del peso -->
+            </div>
+        </div>
+        
+        <script>
+            // Funzione per ottenere i parametri dalla query string dell'URL
+            function getQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    weight: params.get('weight'),  // Ottieni il valore di weight
+                    user: params.get('user'),    // Nome utente dalla query string
+                    date: params.get('date')     // Data dalla query string
+                };
+            }
+        
+            // Funzione per aggiornare la visualizzazione del peso
+            function updatePeso(weightValue) {
+                const pesoValue = document.getElementById('peso_value');
+                pesoValue.textContent = `${weightValue} kg`;
+            }
+          // Al caricamento della pagina, prendi il valore di 'weight' dalla query string
+          window.onload = function() {
+                const { weight, user, date} = getQueryParams();  // Ottieni i parametri weight, user e date dall'URL
+
+                // Se peso è presente nell'URL, usalo; altrimenti, imposta 0
+                const initialPeso = weight ? parseFloat(weight) : 0;
+                
+                // Imposta il valore iniziale del peso
+                let peso = initialPeso;
+                
+                // Aggiorna la visualizzazione del peso
+                updatePeso(peso);
+
+                
+            // Recupera gli elementi dal DOM
+            const minusButton = document.getElementById('minus_button');
+            const plusButton = document.getElementById('plus_button');
+            const saveButton = document.getElementById('save_button');
+            
+            // Gestisci il clic sul pulsante minus
+            minusButton.addEventListener('click', function() {
+                if (peso > 0) {
+                    peso--; // Decrementa solo se il valore è maggiore di zero
+                    updatePeso(peso); // Aggiorna il valore sullo schermo
+                }
+            });
+        
+            // Gestisci il clic sul pulsante plus
+            plusButton.addEventListener('click', function() {
+                peso++; // Incrementa il valore
+                updatePeso(peso); // Aggiorna il valore sullo schermo
+            });
+        
+            // Gestisci il clic sul pulsante SALVA MODIFICHE
+            saveButton.addEventListener('click', function() {
+                // Ottieni i parametri dall'URL
+                const { user } = getQueryParams();
+                
+                if (user) {
+                    // Costruisci l'URL per reindirizzare l'utente
+                    const url = `../php/add_weight.php?weight=${peso}&user=${encodeURIComponent(user)}&date=${encodeURIComponent(date)}`;
+                    
+                    // Redirigi l'utente alla pagina con i parametri via URL
+                    window.location.href = url;
+                } else {
+                    alert("Errore: dati utente o peso mancanti.");
+                }
+            });
+        
+            };
+           
+        
+          
+        </script>
+        
+        
+</body>
+</html>

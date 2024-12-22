@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/vnd.icon" href="img/logo_webapp_MangioSano.png">
+</head>
+<body >
+    <div class="titolo_index" >
+        <div class="login_btn">
+            <a href="login.html"><button class="login_btn_hover" >
+                <i class="fas fa-user icon"></i>
+                
+               </button>
+            </a>
+           </div>
+        MANGIO SANO
+    </div>
+      <div class="body_index">
+
+       <div class="descr">
+        <P>
+            <b><h3>Consigli su cosa mangiare<br>
+             durante ogni tua giornata.</b><br></h3>
+            Calcolando il tuo BMR giornaliero <br>
+            potrai seguire un esempio di dieta, <br>
+            aggiornare il tuo peso, scegliere quali <br>
+            alimenti ti interessano di piu con tutte <br>
+            le relative calorie.<br>
+            <h5>Per effettuare una prova cliccare sotto<br>
+            altrimenti bisogna loggarsi prima.</h5>
+        </P>
+        <div class="button_center">
+                <button class="hover-button" onclick="pagechange()">
+                    PROVA
+                </button>
+        </div>
+       </div>
+       <script>
+function pagechange(){
+    window.location.href="prova.html";
+}
+
+       </script>
+       
+       <div class="footer-container">
+        <div class="footer-links">
+            <h4>Navigazione</h4>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="chi_siamo.html">Chi Siamo</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li><a href="tel:0809923747">Contatti: 0809923747</a></li>
+            </ul>
+        </div>
+        
+        <div id="map"></div>
+
+<script>
+    // Funzione di inizializzazione della mappa
+    function initMap() {
+        // La posizione desiderata Bari
+        var location = { lat: 41.117143, lng: 16.871871 };
+
+        // Creazione della mappa centrata sulla posizione
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10, // Livello di zoom
+            center: location // Posizione centrale
+        });
+
+        // Aggiunta di un marker sulla posizione specificata
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            title: "Bari, Italia" // Testo visibile al passaggio del mouse
+        });
+    }
+</script>
+
+<!-- Includi la Google Maps API e la chiave API  -->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?&callback=initMap">
+</script>
+
+<div class="footer-social">
+    <h4>Seguici su</h4>
+    <a href="https://www.facebook.com/?locale2=it_IT&_rdr"><img src="img/facebook-icon.png" alt="Facebook"></a>
+    <a href="https://x.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoiZW4ifQ%3D%3D%22%7D"><img src="img/twitter-icon.png" alt="Twitter"></a>
+    <a href="https://www.instagram.com/accounts/login/"><img src="img/instagram-icon.png" alt="Instagram"></a>
+</div>
+    </div>
+    
+    <div class="footer-copyright">
+        <p>&copy; 2024 Mangio Sano. Tutti i diritti riservati.</p>
+    </div>
+</div>
+</body>
+</html>

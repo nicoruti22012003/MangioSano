@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/vnd.icon" href="img/logo_webapp_MangioSano.png">
+</head>
+<body>
+  <script>
+    // Funzione per ottenere i parametri dell'URL
+    function getUrlParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Verifica la presenza del parametro "error" nell'URL
+    if (getUrlParameter('error') === 'password') {
+     
+        setTimeout(function() {
+            alert("PASSWORD ERRATA");
+            var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        // A loop that checks every input field in the current tab:
+          y[1].className += " invalid";
+          return valid;
+        }, 200); // Ritardo per assicurarsi che la pagina sia caricata
+    }else if (getUrlParameter('error') === 'username'){
+      setTimeout(function() {
+            alert("USERNAME ERRATO");
+            var x, y, i, valid = true;
+        x = document.getElementsByClassName("tab");
+        y = x[currentTab].getElementsByTagName("input");
+        
+          y[0].className += " invalid";
+          return valid;
+        }, 200); // Ritardo per assicurarsi che la pagina sia caricata
+    }
+</script>
+<div class="titolo_index">
+  <div class="login_btn">
+    <a href="index.html"><button class="login_btn_hover" >
+        <i class="fas fa-home icon"></i>
+        
+       </button>
+    </a>
+   </div>
+  MANGIO SANO
+</div>
+<div class="body_index">
+    
+    
+      <div class="regform_div">
+      <form class="regForm" id="regForm" action="../php/login.php" method="post">
+        <div class="tab"><h1>Login</h1>
+            <p><input placeholder="Username..." oninput="this.className = ''" name="username"></p>
+            <p><input placeholder="Password..." oninput="this.className = ''" name="password" type="password"></p>
+          </div>
+          <div style="overflow:auto;">
+            <div style="float:right;">
+        <button type="submit" class="btn_invia_login">Invia</button>
+    </div>
+
+</div>
+
+        <div class="register_link">
+            <a href="form.html">
+                Non sei ancora registrato. Clicca qui!
+            </a> 
+        </div>
+       
+      </form>
+    </div>
+    </div>
+      <script>
+        var currentTab = 0; 
+        showTab(currentTab); 
+        
+        function showTab(n) {
+          var x = document.getElementsByClassName("tab");
+          x[n].style.display = "block";
+          
+          if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Invia";
+          } else {
+            document.getElementById("nextBtn").innerHTML = "Avanti";
+          }
+          fixStepIndicator(n)
+        }
+        </script>
+      
+     
+</body>
+</html>

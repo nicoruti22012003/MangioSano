@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style3.css">
+        <link rel="icon" type="image/vnd.icon" href="img/logo_webapp_MangioSano.png">
+    </head>
+  
+    <body>
+        <div class="sfondo1"></div>
+
+        <div class="titolo">
+            Aggiorna l'acqua
+        </div>
+        <div class="container_button">
+            <div class="button_round_minus" id="minus_button">
+                -
+            </div> 
+            <div class="button_round_plus" id="plus_button">
+                +
+            </div>
+            <div class="button" id="save_button">
+                SALVA MODIFICHE
+            </div>
+            <div class="litri" id="litri_value">
+                <!-- Qui verrà visualizzato il valore dei litri -->
+            </div>
+        </div>
+        
+        <script>
+            // Funzione per ottenere i parametri dalla query string dell'URL
+            function getQueryParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    water: params.get('water'),  // Ottieni il valore di water
+                    user: params.get('user'),    // Nome utente dalla query string
+                    date: params.get('date')     // Data dalla query string
+                };
+            }
+        
+            // Funzione per aggiornare la visualizzazione dei litri
+            function updateLitri(waterValue) {
+                const litriValue = document.getElementById('litri_value');
+                litriValue.textContent = `${waterValue} lt`;
+            }
+        
+            // Inizializza la variabile per il valore dei litri
+            let litri = 0;
+        
+            // Recupera gli elementi dal DOM
+            const minusButton = document.getElementById('minus_button');
+            const plusButton = document.getElementById('plus_button');
+            const saveButton = document.getElementById('save_button');
+            
+            // Gestisci il clic sul pulsante minus
+            minusButton.addEventListener('click', function() {
+                if (litri > 0) {
+                    litri--; // Decrementa solo se il valore è maggiore di zero
+                    updateLitri(litri); // Aggiorna il valore sullo schermo
+                }
+            });
+        
+            // Gestisci il clic sul pulsante plus
+            plusButton.addEventListener('click', function() {
+                litri++; // Incrementa il valore
+                updateLitri(litri); // Aggiorna il valore sullo schermo
+            });
+        
+            // Gestisci il clic sul pulsante SALVA MODIFICHE
+            saveButton.addEventListener('click', function() {
+                // Ottieni i parametri dall'URL
+                const { user, date } = getQueryParams();
+                
+                if (user && date) {
+                    // Costruisci l'URL per reindirizzare l'utente
+                    const url = `../php/add_water.php?litri=${litri}&user=${encodeURIComponent(user)}&date=${encodeURIComponent(date)}`;
+                    
+                    // Redirigi l'utente alla pagina con i parametri via URL
+                    window.location.href = url;
+                } else {
+                    alert("Errore: dati utente o data mancanti.");
+                }
+            });
+        
+            // Al caricamento della pagina, prendi il valore di 'water' dalla query string
+            window.onload = function() {
+                const { water, user, date } = getQueryParams();  // Ottieni i parametri water, user e date dall'URL
+                
+                // Se water è presente nell'URL, usalo; altrimenti, imposta 0
+                const initialWater = water ? parseFloat(water) : 0;
+                
+                // Imposta il valore iniziale di litri
+                litri = initialWater;
+                
+                // Aggiorna la visualizzazione dei litri
+                updateLitri(litri);
+            };
+        </script>
+        
+        
+</body>
+</html>

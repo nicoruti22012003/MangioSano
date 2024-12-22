@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diete Personalizzate</title>
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/vnd.icon" href="img/logo_webapp_MangioSano.png">
+</head>
+<body class="body_diete">
+    <div class="back_btn">
+        <a href="javascript:void(0);" onclick="history.back();"><button  class="back_btn_hover" >
+            <i class="fas fa-arrow-left icon"></i>
+            
+           </button>
+        </a>
+       </div>
+    <header class="header_diete">
+        Diete Personalizzate
+    </header>
+    <main>
+        <!-- Aumento Massa -->
+        <section class="diet-section full-page" id="mass-section">
+            <div class="slider-container">
+                <button class="slider-btn left" onclick="changeSlide('mass', -1)"><i class="fas fa-chevron-left"></i></button>
+                <div class="diet-slider" id="mass">
+                    <div class="slide active">
+                        <h2>Aumento Massa - Giorno 1</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> 4 uova, 100g di avena, 1 banana<br>
+                            <strong>Pranzo:</strong> 150g di pollo, 200g di riso, 100g di broccoli<br>
+                            <strong>Cena:</strong> 200g di salmone, 150g di quinoa, 50g di asparagi
+                        </p>
+                    </div>
+                    <div class="slide">
+                        <h2>Aumento Massa - Giorno 2</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> 2 fette di pane integrale, 50g di burro d'arachidi<br>
+                            <strong>Pranzo:</strong> 200g di tacchino, 150g di patate dolci, 100g di spinaci<br>
+                            <strong>Cena:</strong> 200g di manzo magro, 100g di riso, insalata mista
+                        </p>
+                    </div>
+                    <div class="slide">
+                        <h2>Aumento Massa - Giorno 3</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> Smoothie con proteine, 200ml di latte, 50g di avena<br>
+                            <strong>Pranzo:</strong> 200g di pollo, 200g di pasta integrale, zucchine<br>
+                            <strong>Cena:</strong> 200g di pesce bianco, 150g di couscous, carote al vapore
+                        </p>
+                    </div>
+                </div>
+                <button class="slider-btn right" onclick="changeSlide('mass', 1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Mantenimento -->
+        <section class="diet-section full-page" id="maintain-section">
+            <div class="slider-container">
+                <button class="slider-btn left" onclick="changeSlide('maintain', -1)"><i class="fas fa-chevron-left"></i></button>
+                <div class="diet-slider" id="maintain">
+                    <div class="slide active">
+                        <h2>Mantenimento - Giorno 1</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> 3 uova, 50g di pane integrale<br>
+                            <strong>Pranzo:</strong> 150g di pollo, 150g di riso, verdure miste<br>
+                            <strong>Cena:</strong> 150g di pesce bianco, patate al forno, insalata
+                        </p>
+                    </div>
+                    <div class="slide">
+                        <h2>Mantenimento - Giorno 2</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> Yogurt greco con 30g di muesli<br>
+                            <strong>Pranzo:</strong> 200g di tacchino, 100g di pasta integrale, pomodori<br>
+                            <strong>Cena:</strong> Omelette con verdure e pane integrale
+                        </p>
+                    </div>
+                    <div class="slide">
+                        <h2>Mantenimento - Giorno 3</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> 2 fette di pane integrale con avocado<br>
+                            <strong>Pranzo:</strong> 150g di salmone, riso basmati, verdure<br>
+                            <strong>Cena:</strong> 200g di petto di pollo, insalata mista
+                        </p>
+                    </div>
+                </div>
+                <button class="slider-btn right" onclick="changeSlide('maintain', 1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Perdita Peso -->
+        <section class="diet-section full-page" id="loss-section">
+            <div class="slider-container">
+                <button class="slider-btn left" onclick="changeSlide('loss', -1)"><i class="fas fa-chevron-left"></i></button>
+                <div class="diet-slider" id="loss">
+                    <div class="slide active">
+                        <h2>Perdita Peso - Giorno 1</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> 2 uova, 50g di avena<br>
+                            <strong>Pranzo:</strong> 150g di petto di pollo, insalata mista<br>
+                            <strong>Cena:</strong> Pesce al vapore, verdure grigliate
+                        </p>
+                    </div>
+                    <div class="slide">
+                        <h2>Perdita Peso - Giorno 2</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> Yogurt magro con frutta<br>
+                            <strong>Pranzo:</strong> 100g di tacchino, zucchine grigliate<br>
+                            <strong>Cena:</strong> 150g di tofu, insalata
+                        </p>
+                    </div>
+                    <div class="slide">
+                        <h2>Perdita Peso - Giorno 3</h2>
+                        <p class="diet-info">
+                            <strong>Colazione:</strong> Smoothie con proteine e frutta<br>
+                            <strong>Pranzo:</strong> Insalata di tonno con verdure<br>
+                            <strong>Cena:</strong> 200g di pesce bianco, broccoli al vapore
+                        </p>
+                    </div>
+                </div>
+                <button class="slider-btn right" onclick="changeSlide('loss', 1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const purpous = new URLSearchParams(window.location.search).get("purpous");
+            const sections = {
+                1: "loss-section",
+                2: "mass-section",
+                3: "maintain-section"
+            };
+
+            Object.keys(sections).forEach(key => {
+                const section = document.getElementById(sections[key]);
+                section.style.display = (key === purpous) ? "flex" : "none";
+            });
+
+            document.querySelectorAll('.diet-slider').forEach(slider => {
+                const slides = slider.querySelectorAll('.slide');
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[0].classList.add('active');
+            });
+        });
+
+        function changeSlide(sectionId, direction) {
+            const slider = document.getElementById(sectionId);
+            const slides = slider.querySelectorAll('.slide');
+            const activeSlide = slider.querySelector('.slide.active');
+            let currentIndex = Array.from(slides).indexOf(activeSlide);
+
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + slides.length) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>

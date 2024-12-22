@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creazione Dieta</title>
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/vnd.icon" href="img/logo_webapp_MangioSano.png">
+</head>
+<body>
+    <div class="div">
+        <div class="body_prova">
+    <div class="body_form_obb">
+    <div class="title_obb">Creazione di una Dieta Personalizzata</div>
+    <div class="back_btn">
+        <a href="index.html"><button class="back_btn_hover" >
+            <i class="fas fa-arrow-left icon"></i>
+            
+           </button>
+        </a>
+       </div>
+ 
+        
+    <div class="container">
+     
+           
+            <!-- Obiettivo -->
+            <label for="obiettivo">Obiettivo:</label>
+            <select name="obiettivo" id="obiettivo" required>
+                <option value="1">Perdere Peso</option>
+                <option value="2">Aumentare Peso</option>
+                <option value="3">Mantenere Peso</option>
+            </select>
+
+            <!-- Genere -->
+            <label for="genere">Genere:</label>
+            <select name="genere" id="genere" required>
+                <option >Uomo</option>
+                <option >Donna</option>
+            </select>
+
+            <!-- Altezza -->
+            <label for="altezza">Altezza (cm):</label>
+            <input type="number" name="altezza" id="altezza" required min="50" max="250" step="1">
+
+             <!-- Eta -->
+             <label for="eta">Età:</label>
+             <input type="number" name="eta" id="eta" required max="250" step="1">
+
+            <!-- Peso attuale -->
+            <label for="peso">Peso attuale (kg):</label>
+            <input type="number" name="peso" id="peso" required step="1">
+
+            <!-- Livello di attività fisica -->
+            <label for="attivita">Attività fisica:</label>
+            <select name="attivita" id="attivita" required>
+                <option value="1">Sedentario</option>
+                <option value="2">Leggermente Attivo</option>
+                <option value="3">Moderatamente Attivo</option>
+                <option value="4">Molto Attivo</option>
+                <option value="5">Estremamente Attivo</option>
+            </select>
+
+            <!-- Pulsante di conferma -->
+            <button class="hover-button" onclick="calculatebmr()">Conferma</button>
+        
+        </div>
+    </div>
+    <div class="result-box">
+        <div id="bmr">BMR: </div>
+        <div id="carbo">Carboidrati: </div>
+        <div id="protein">Proteine: </div>
+        <div id="fat">Grassi: </div>
+    </div>
+</div>
+
+
+    <script>
+   function calculatebmr(){
+    // Recupera i valori dal form
+    const obb = parseInt(document.getElementById('obiettivo').value);
+            const genere = document.getElementById('genere').value;
+            const altezza = document.getElementById('altezza').value;
+            const eta = document.getElementById('eta').value;
+            const peso_att = document.getElementById('peso').value;
+            const attivita = parseInt(document.getElementById('attivita').value);
+              // Validazione dei campi
+    if (isNaN(altezza) || altezza < 50 || altezza > 250) {
+        alert("L'altezza deve essere un valore compreso tra 50 e 250 cm.");
+        return;
+    }
+    if (isNaN(eta) || eta < 1 || eta > 150) {
+        alert("L'età deve essere un valore compreso tra 1 e 150 anni.");
+        return;
+    }
+    if (isNaN(peso_att) || peso_att < 30 || peso_att > 250) {
+        alert("Il peso deve essere un valore compreso tra 30 e 250 kg.");
+        return;
+    }
+            let BMR=0;
+            let carbo=0;
+            let protein=0;
+            let fat=0;
+    // Calcolo del BMR
+    if (genere == "Uomo") {
+        BMR = (10 * peso_att) + (6.25 * altezza) - (5 * eta) + 5;
+    } else {
+        BMR = (10 * peso_att) + (6.25 * altezza) - (5 * eta) - 161;
+    }
+
+    // Modifica del BMR in base all'attività
+    switch (attivita) {
+        case 1:
+            BMR *= 1.2;
+            break;
+        case 2:
+            BMR *= 1.375;
+            break;
+        case 3:
+            BMR *= 1.55;
+            break;
+        case 4:
+            BMR *= 1.725;
+            break;
+        case 5:
+            BMR *= 1.9;
+            default:
+                break;
+    }
+
+    // Calcolo dei macronutrienti
+    if (obb == 1) { // Perdita peso
+        carbo = (BMR * 0.45)/4;
+        protein = (BMR * 0.30)/4;
+        fat = (BMR * 0.25)/9;
+    } else if (obb == 2){ // Aumento
+        carbo = (BMR * 0.50)/4;
+        protein = (BMR * 0.25)/4;
+        fat = (BMR * 0.25)/9;
+    }else { // mantenimento massa
+        carbo = (BMR * 0.50)/4;
+        protein = (BMR * 0.20)/4;
+        fat = (BMR * 0.30)/9;
+    }
+let calories=BMR;
+
+    // Aggiorna la box con i risultati
+    document.getElementById('bmr').textContent = `BMR: ${calories.toFixed(2)} kcal`;
+    document.getElementById('carbo').textContent = `Carboidrati: ${carbo.toFixed(2)} g`;
+    document.getElementById('protein').textContent = `Proteine: ${protein.toFixed(2)} g`;
+    document.getElementById('fat').textContent = `Grassi: ${fat.toFixed(2)} g`;
+}
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style3.css">
+        <link rel="icon" type="image/vnd.icon" href="img/logo_webapp_MangioSano.png">
+    </head>
+
+    <body>
+     
+        <div class="titolo1">
+            Colazione
+        </div>
+
+        
+        <div class="container1">
+            <div class="div_container">
+            <div class="container_search">
+                <h1>Ricerca Alimenti</h1>
+                <input type="text" id="search" placeholder="Cerca alimento..." autocomplete="off">
+                <div id="suggestions"></div>
+            </div>
+            
+            <script >
+   // Funzione che svuota il campo di ricerca
+   function clearSearchField() {
+        document.getElementById('search').value = '';
+        document.getElementById('suggestions').innerHTML = '';
+    }
+
+    // Azzera la barra di ricerca quando la pagina viene ricaricata o cambiata
+    window.onload = function() {
+        clearSearchField();
+
+    };
+
+    // Evento per quando la pagina viene mostrata, anche quando si torna indietro con il browser
+    window.addEventListener('pageshow', function() {
+        clearSearchField();
+    });
+    // Funzione per ottenere i parametri dall'URL
+    function getUrlParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+    
+            // Recupera il parametro "pasto" dall'URL
+            const pasto = getUrlParameter('pasto');
+    
+            // Se il parametro "pasto" è presente, aggiorna il contenuto del div
+            if (pasto) {
+                const titoloElement = document.querySelector('.titolo1');
+                titoloElement.textContent = pasto.charAt(0).toUpperCase() + pasto.slice(1);  // Capitalizza la prima lettera
+            }
+                const url = new URL(window.location.href);
+
+// Crea un oggetto URLSearchParams per lavorare con i parametri di query
+const params = new URLSearchParams(url.search);
+
+// Ottieni un parametro specifico
+const id_day = params.get('id_day'); 
+const user = params.get('user'); 
+const date = params.get('date'); 
+
+
+                document.getElementById('search').addEventListener('keyup', function() {
+                let query = this.value;
+            
+                if (query.length > 2) {
+                    fetchSuggestions(query);
+                } else {
+                    document.getElementById('suggestions').innerHTML = '';
+                }
+            });
+            
+            function fetchSuggestions(query) {
+                let xhr = new XMLHttpRequest();
+                xhr.open('GET', '../php/search.php?q=' + query, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        let suggestions = JSON.parse(xhr.responseText);
+                        displaySuggestions(suggestions);
+                    }
+                };
+                xhr.send();
+            }
+            
+            function displaySuggestions(suggestions) {
+                let suggestionsContainer = document.getElementById('suggestions');
+                suggestionsContainer.innerHTML = '';
+            
+                if (suggestions.length > 0) {
+                    suggestions.forEach(function(suggestion) {
+                        let div = document.createElement('div');
+                        div.classList.add('suggestion-item');
+                        div.innerHTML = suggestion.name;  // 'name' è il nome dell'alimento (food_name)
+                        div.addEventListener('click', function() {
+                            window.location.href = '../php/pagina-alimento.php?id_day='+ id_day +'&id_food=' + suggestion.id+'&pasto='+ pasto;
+                        });
+                        suggestionsContainer.appendChild(div);
+                    });
+                } else {
+                    suggestionsContainer.innerHTML = '<div class="suggestion-item">Nessun risultato trovato</div>';
+                }
+            }
+            document.addEventListener('click', function(event) {
+    let searchBox = document.getElementById('search');
+    let suggestionsContainer = document.getElementById('suggestions');
+
+    if (!searchBox.contains(event.target) && !suggestionsContainer.contains(event.target)) {
+        suggestionsContainer.innerHTML = '';  // Chiudi i suggerimenti
+    }
+});
+</script>            </div>
+
+            <div class="titolo_lista">
+                Alimenti
+            </div>
+            <ul class="alimenti" id="alimentList">
+                <!-- Gli alimenti verranno inseriti qui -->
+            </ul>
+
+           <script>
+
+              // Funzione per ottenere gli alimenti dal server tramite PHP
+    function fetchAlimenti(pasto) {
+        let totalCalories = 0;
+let totalCarbo = 0;
+let totalProtein = 0;
+let totalFat = 0;
+        fetch('../php/get_alimenti.php?id_day=' + id_day + '&pasto=' + pasto)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    const bmr_calories = data[0].bmr_calories;
+const bmr_carbo = data[0].bmr_carbo;
+const bmr_protein = data[0].bmr_protein;
+const bmr_fat = data[0].bmr_fat;
+                    // Pulisci la lista alimenti
+                    const alimentList = document.getElementById('alimentList');
+                    alimentList.innerHTML = '';
+                   
+                    // Aggiungi ogni alimento trovato nella lista
+                    data.forEach(item => {
+                        // Somma i valori delle rispettive proprietà
+    totalCalories += (item.calories/100)*item.quantity;
+    totalCarbo += (item.carbo/100)*item.quantity;
+    totalProtein += (item.protein/100)*item.quantity;
+    totalFat += (item.fat/100)*item.quantity;
+                        let listItem = document.createElement('li');
+                        // Crea un elemento 
+    let link = document.createElement('a');
+    link.href = `../php/pagina-alimento.php?id_food=${item.id_food}&quantity=${item.quantity}`;
+    link.textContent = `${item.food_name} ${item.quantity} gr`;
+
+// Aggiungi il link come contenuto dell'elemento <li>
+listItem.appendChild(link);
+                        
+                          // Aggiungi un bottone "x" per eliminare l'alimento
+                    let removeButton = document.createElement('button');
+                    removeButton.textContent = 'x';
+                    removeButton.classList.add('remove-btn');
+                    removeButton.onclick = function() {
+                        removeAlimento(item.id_food);
+                    };
+                    listItem.appendChild(removeButton);
+                        alimentList.appendChild(listItem);
+                    });
+                
+                    document.querySelector('.calories span').textContent = `${totalCalories.toFixed(0)} / ${bmr_calories.toFixed(0)} kcal`;
+                document.querySelectorAll('.macros .macro').forEach((macro, index) => {
+                    if (index === 0) { // Carboidrati
+                        macro.querySelector('.amount').textContent = `${totalCarbo.toFixed(0)} / ${bmr_carbo.toFixed(0)} gr`;
+                    } else if (index === 1) { // Proteine
+                        macro.querySelector('.amount').textContent = `${totalProtein.toFixed(0)} / ${bmr_protein.toFixed(0)} gr`;
+                    } else if (index === 2) { // Grassi
+                        macro.querySelector('.amount').textContent = `${totalFat.toFixed(0)} / ${bmr_fat.toFixed(0)} gr`;
+                    }
+                });
+                const green='.progress-green';
+                const orange='.progress-bar-orange';
+                const pink='.progress-bar-pink';
+                const purple='.progress-bar-purple';
+                updateProgressBar(bmr_calories, totalCalories, green);
+                updateProgressBar(bmr_carbo, totalCarbo, orange);
+                updateProgressBar(bmr_protein, totalProtein, pink);
+                updateProgressBar(bmr_fat, totalFat, purple);
+                } else {
+                    document.getElementById('alimentList').innerHTML = '<li>Nessun alimento trovato</li>';
+                }
+            })
+            .catch(error => {
+                console.error('Errore nella richiesta:', error);
+            });
+    }
+
+    // Funzione per aggiornare la progress bar dei carboidrati
+function updateProgressBar(bmr, total,bar) {
+    // Calcola la percentuale
+    let percentuale = (total / bmr) * 100;
+
+    // Limita la percentuale tra 0 e 100
+    percentuale = Math.min(Math.max(percentuale, 0), 100);
+
+    // Imposta la larghezza della progress bar
+    document.querySelector(bar).style.width = percentuale + '%';
+}
+
+// Funzione per rimuovere l'alimento dal DB
+function removeAlimento(id_food) {
+    window.location.href="../php/remove_alimento.php?id_food="+id_food+"&id_day="+id_day+"&pasto="+pasto;
+    setTimeout(function() {
+        window.location.reload();
+    }, 100);
+}
+
+    window.addEventListener('pageshow', function() {
+    
+    fetchAlimenti(pasto);
+});
+
+    // Chiamata alla funzione per ottenere gli alimenti
+    window.onload = fetchAlimenti(pasto);
+           </script> 
+            
+<div class="div_btn_savealiment">
+            <button class="btn_savealiment" onclick="changepage()">INSERISCI ALIMENTI</button>
+        </div>
+            
+<script>
+    function changepage(){
+    window.location.href='../php/intro.php?date='+date+'&user='+user;
+    }
+</script>
+            
+            <div class="assunzione">
+                <div class="title">Assunzione giornaliera</div>
+         <div class="calories">
+             <span>0</span>
+         </div>
+         <div class="progress-bar">
+             <div class="progress-green"></div>
+             </div>
+             <div class="macros">
+                 <div class="macro">
+                     <div class="label">Carboidrati</div>
+                     <div class="progress-bar">
+                         <div class="progress-bar-orange"></div>
+                     </div>
+                     <div class="amount">0</div>
+                 </div>
+     
+                 <div class="macro">
+                     <div class="label">Proteine</div>
+                     <div class="progress-bar">
+                         <div class="progress-bar-pink"></div>
+                     </div>
+                     <div class="amount">0</div>
+                 </div>
+     
+                 <div class="macro">
+                     <div class="label">Grassi</div>
+                     <div class="progress-bar">
+                         <div class="progress-bar-purple"></div>
+                     </div>
+                     <div class="amount">0</div>
+                 </div>
+             </div>
+         </div>
+ 
+
+        </div>
+
+       
+
+</body>
+</html>

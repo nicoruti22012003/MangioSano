@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body >
+<script>
+  function getFoodDetails(productId) {
+    fetch(`https://world.openfoodfacts.org/api/v0/product/${productId}.json`)
+        .then(response => response.json())
+        .then(data => {
+            const product = data.product;
+            // Mostra le informazioni nutrizionali
+            displayFoodDetails(product);
+        })
+        .catch(error => console.log('Errore nel recupero dei dettagli:', error));
+}
+
+function displayFoodDetails(product) {
+    const detailsContainer = document.getElementById("food-details");
+    detailsContainer.innerHTML = `
+        <h2>${product.product_name}</h2>
+        <p>Calorie: ${product.nutriments["energy-kcal_100g"]} kcal</p>
+        <p>Carboidrati: ${product.nutriments["carbohydrates_100g"]} g</p>
+        <p>Proteine: ${product.nutriments["proteins_100g"]} g</p>
+        <p>Grassi: ${product.nutriments["fat_100g"]} g</p>
+    `;
+}
+
+
+</script>
+<div id="food-details"></div>
+<button onclick="saveFoodDetails()">Salva</button>
+
+
+
+
+</body>
+</html>

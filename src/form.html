@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/vnd.icon" href="img/logo_webapp_MangioSano.png">
+</head>
+<body>
+  <script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        // Imposta i valori degli input se presenti nella query string
+        document.querySelector('input[name="fname"]').value = urlParams.get('fname') || '';
+        document.querySelector('input[name="lname"]').value = urlParams.get('lname') || '';
+        document.querySelector('input[name="email"]').value = urlParams.get('email') || '';
+        document.querySelector('input[name="phone"]').value = urlParams.get('phone') || '';
+        document.querySelector('input[name="dd"]').value = urlParams.get('dd') || '';
+        document.querySelector('input[name="mm"]').value = urlParams.get('mm') || '';
+        document.querySelector('input[name="yyyy"]').value = urlParams.get('yyyy') || '';
+        document.querySelector('input[name="uname"]').value = urlParams.get('uname') || '';
+        const uname = urlParams.get('uname');
+
+        if(uname)
+        {
+          setTimeout( function() {
+            alert("Errore! Utente già esistente");
+          }, 250);
+          
+        }
+    };
+</script>
+<div class="titolo_index">
+  
+  <div class="login_btn">
+    <a href="index.html"><button class="login_btn_hover" >
+        <i class="fas fa-home icon"></i>
+        
+       </button>
+    </a>
+   </div>
+   <div class="back_btn">
+    <a href="login.html"><button class="back_btn_hover" >
+        <i class="fas fa-arrow-left icon"></i>
+        
+       </button>
+    </a>
+   </div>
+  MANGIO SANO
+</div>
+<div class="body_index">
+   
+      <div class="regform_div">
+      <form class="regForm" id="regForm" action="../php/connessione.php" method="post">
+        <!-- form  -->
+        <div class="tab"><h1>Inserisci nome e cognome</h1>
+          <p><input placeholder="Nome..." oninput="this.className = ''" name="fname" ></p>
+          <p><input placeholder="Cognome..." oninput="this.className = ''" name="lname"></p>
+        </div>
+        <div class="tab">Info di contatto:
+          <p><input placeholder="E-mail..." oninput="this.className = ''" name="email"></p>
+          <p><input placeholder="Telefono..." oninput="this.className = ''" name="phone"></p>
+        </div>
+        <div class="tab">Data di nascita:
+          <p><input type="number" placeholder="gg" oninput="this.className = ''" name="dd" max="31" required></p>
+          <p><input type="number" placeholder="mm" oninput="this.className = ''" name="mm" max="12" required></p>
+          <p><input type="number" placeholder="aaaa" oninput="this.className = ''" name="yyyy" min="1950" max="2024" required></p>
+        </div>
+        <div class="tab">Login:
+          <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
+          <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+        </div>
+        <div style="overflow:auto;">
+          <div style="float:right;">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Indietro</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Avanti</button>
+          </div>
+        </div>
+        <!-- Cerchi per il form  -->
+        <div style="text-align:center;margin-top:40px;">
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+        </div>
+      </div>
+      </form>
+    </div>
+      <script>
+      var currentTab = 0; 
+      showTab(currentTab); // Visualizza tabella
+      
+      function showTab(n) {
+       
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        // Previous/Next buttons:
+        if (n == 0) {
+          document.getElementById("prevBtn").style.display = "none";
+        } else {
+          document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+          document.getElementById("nextBtn").innerHTML = "Invia";
+        } else {
+          document.getElementById("nextBtn").innerHTML = "Avanti";
+        }
+      
+        fixStepIndicator(n)
+      }
+      
+      function nextPrev(n) {
+       
+        var x = document.getElementsByClassName("tab");
+       
+        if (n == 1 && !validateForm()) return false;
+        // Nasconde tabella:
+        x[currentTab].style.display = "none";
+        currentTab = currentTab + n;
+        //se raggiunge la fine
+        if (currentTab >= x.length) {
+          // invia il form
+          document.getElementById("regForm").submit();
+          return false;
+        }
+        
+        showTab(currentTab);
+      }
+      
+      function validateForm() {
+    var x, y, i, valid = true;
+    x = document.getElementsByClassName("tab");
+    y = x[currentTab].getElementsByTagName("input");
+    
+    // ciclo che controlla ciascun elemento 
+    for (i = 0; i < y.length; i++) {
+        if (y[i].name === "dd" || y[i].name === "mm" || y[i].name === "yyyy") {
+            // validazione
+            if (!validateDate()) {
+                valid = false;
+            }
+        } else {
+            // se non è valido
+            if (y[i].value == "") {
+                y[i].className += " invalid";
+                valid = false;
+            }
+        }
+    }
+    
+    // se risulta valido
+    if (valid) {
+        document.getElementsByClassName("step")[currentTab].className += " finish";
+    }
+    return valid; // ritorna lo stato
+}
+
+function validateDate() {
+    var dd = document.querySelector('input[name="dd"]').value;
+    var mm = document.querySelector('input[name="mm"]').value;
+    var yyyy = document.querySelector('input[name="yyyy"]').value;
+
+    var dateValid = true;
+    
+    // check per la data
+    if (dd < 1 || dd > 31 || mm < 1 || mm > 12 || yyyy < 1950 || yyyy > 2024) {
+        dateValid = false;
+    }
+
+    // validazione data attuale
+    if (dateValid) {
+        var daysInMonth = new Date(yyyy, mm, 0).getDate();
+        if (dd > daysInMonth) {
+            dateValid = false;
+        }
+    }
+
+    // aggiungi la classe invalid
+    if (!dateValid) {
+        document.querySelector('input[name="dd"]').classList.add("invalid");
+        document.querySelector('input[name="mm"]').classList.add("invalid");
+        document.querySelector('input[name="yyyy"]').classList.add("invalid");
+    } else {
+        document.querySelector('input[name="dd"]').classList.remove("invalid");
+        document.querySelector('input[name="mm"]').classList.remove("invalid");
+        document.querySelector('input[name="yyyy"]').classList.remove("invalid");
+    }
+
+    return dateValid;
+}
+
+      
+      function fixStepIndicator(n) {
+        
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+          x[i].className = x[i].className.replace(" active", "");
+        }
+        x[n].className += " active";
+      }
+      </script>
+</body>
+</html>
